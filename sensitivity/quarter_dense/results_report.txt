@@ -1,0 +1,55 @@
+﻿REPRODUCTION OF Karam et al. (2014), JSIP 5, 32-41
+Noise Removal in Speech Processing Using Spectral Subtraction
+Audio source        : speech.wav + noise.wav
+Speech used from    : sample 1988608 (45.093 s into file); 928.8 ms of sound available
+Noise used from     : sample 1060352 (24.044 s into file); 952.0 ms of sound available
+Sampling rate       : 44100 Hz
+Samples per signal  : 28446  (645.0 ms)
+Level normalisation : speech peak 0.92, noise peak 0.3
+Options             : quarter-reading=dense, frame-avg-mode=centered, synthesis-window=False, ola-normalise=True
+Reference framing   : L=256, hop=128, 221 frames  (paper reports 221 for 28,446 samples)
+
+Reference-configuration results
+  Eq.(9)  SNR  (paper's definition)      :  12.3213 dB
+  Conventional output SNR                :  18.4036 dB
+  Conventional input  SNR (unprocessed)  :  12.7314 dB
+  Actual improvement                     :  +5.6723 dB
+
+Metric sanity check: multiply the denoised output by 2 (removes no noise)
+  change in Eq.(9) SNR                   :  +6.0206 dB
+  change in conventional SNR             :  +0.0000 dB
+
+Reference design (Sec. 4.3): 256-pt Hanning, one-half overlapped, no frame averaging
+    SNR_ref  (this reproduction) =  12.3213 dB
+    SNR_ref  (paper)             =  13.0248 dB
+
+Table 1. Noise removal design using 256 points Hanning window.
+Configuration                                  SNR(dB)   dSNR(dB)   paper SNR  paper dSNR
+256pt / One-half overlap / 3 frames averaging   11.6569    -0.6644     12.4914     -0.5334
+256pt / One-half overlap / 6 frames averaging   11.7278    -0.5935     12.4538     -0.5710
+256pt / One-fourth overlap / No frame averaging   12.3154    -0.0059     13.3619     +0.3371
+256pt / One-fourth overlap / 3 frames averaging   12.0343    -0.2870     12.3457     -0.6791
+256pt / One-fourth overlap / 6 frames averaging   11.5582    -0.7631     12.6906     -0.3342
+
+Table 2. Noise removal design using 128 points Hanning window.
+Configuration                                  SNR(dB)   dSNR(dB)   paper SNR  paper dSNR
+128pt / One-half overlap / No frame averaging   12.1411    -0.1802     12.9805     -0.0443
+128pt / One-half overlap / 3 frames averaging   11.6223    -0.6990     12.2872     -0.7376
+128pt / One-half overlap / 6 frames averaging   11.4460    -0.8753     12.2080     -0.8168
+128pt / One-fourth overlap / No frame averaging   12.1346    -0.1867     13.2412     +0.2164
+128pt / One-fourth overlap / 3 frames averaging   11.8714    -0.4499     10.5704     -2.4544
+128pt / One-fourth overlap / 6 frames averaging   11.4745    -0.8468     12.2584     -0.7664
+
+Table 3. Noise removal design using 512 points Hanning window.
+Configuration                                  SNR(dB)   dSNR(dB)   paper SNR  paper dSNR
+512pt / One-half overlap / No frame averaging   12.3010    -0.0203     13.1032     +0.0784
+512pt / One-half overlap / 3 frames averaging   12.3339    +0.0126     13.0085     -0.0163
+512pt / One-half overlap / 6 frames averaging   12.3617    +0.0404     12.9394     -0.0854
+512pt / One-fourth overlap / No frame averaging   12.2974    -0.0239      5.1722     -7.8526
+512pt / One-fourth overlap / 3 frames averaging   12.2442    -0.0772      5.8646     -7.1602
+512pt / One-fourth overlap / 6 frames averaging   12.2167    -0.1046      6.5488     -6.4760
+
+Best configuration in THIS run : 512-pt window, half overlap, 6 frame(s) averaged  (dSNR = +0.0404 dB)
+Best by conventional SNR       : 256-pt window, quarter overlap, 1 frame(s) averaged  (output SNR = 18.6844 dB vs ref 18.4036 dB)
+Best configuration in the PAPER: 256-pt window, one-fourth overlap, no frame averaging (dSNR = +0.3371 dB)
+NOTE: the paper's ABSTRACT says 128 points here; its CONCLUSION and Table 1 say 256. Table 1 is self-consistent, so 256 is correct and the abstract contains an error.

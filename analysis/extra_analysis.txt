@@ -1,0 +1,28 @@
+﻿EXTRA ANALYSES (not in the paper)
+Repeatability: 31 trials, noise window slid in 10 ms steps over 952 ms of noise
+   SNR_ref (Eq. 9)                  : 12.2411 +/- 0.0693 dB (mean +/- 1 s.d.)
+   dSNR 256/one-fourth/none vs ref  : +0.0039 +/- 0.0106 dB  (range -0.0173 to +0.0210)
+   paper's single-trial value       : +0.3371 dB
+   actual gain, reference           : +5.793 +/- 0.088 dB
+   actual gain, 256/one-fourth/none : +3.902 +/- 0.090 dB
+A2. Speech window slid in 10 ms steps (29 trials, different speech content each time)
+   dSNR 256/one-fourth/none vs ref  : -0.0045 +/- 0.0203 dB  (range -0.0452 to +0.0275)
+
+B. Noise estimate source (independent estimate uses the last 307 ms of the recording)
+   actual gain, reference  : oracle +5.672 dB   independent +5.597 dB
+   actual gain, 256/1-4/1  : oracle +3.928 dB   independent +3.846 dB
+   Eq.(9) SNR_ref          : oracle 12.3213 dB  independent 12.3291 dB
+
+C. Input-SNR sweep (reference design). 'set' = 10log(Ps/Pn); in/out = gain-matched SNR
+    set SNR   in SNR  out SNR  improvement  Eq.(9) SNR
+       -5.0     1.23     4.18        +2.96       -4.44
+       -2.5     1.98     6.08        +4.10       -2.42
+        0.0     3.05     8.17        +5.12       -0.15
+        2.5     4.48    10.36        +5.88        2.27
+        5.0     6.23    12.53        +6.31        4.76
+        7.5     8.24    14.63        +6.39        7.28
+       10.0    10.44    16.59        +6.15        9.81
+       12.5    12.76    18.42        +5.67       12.35
+       15.0    15.15    20.14        +4.99       14.88
+       17.5    17.59    21.68        +4.09       17.40
+       20.0    20.05    23.08        +3.03       19.92
